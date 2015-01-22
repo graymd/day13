@@ -14,9 +14,9 @@
 <strong>Patient Blood Type:</strong>
 <%= @patient.blood_type %> 
 <br>
-<br>
-
-
+<%= link_to "Edit Patient", edit_patient_path(@patient) %>
+|
+<%= link_to "Delete Patient", patient_path(@patient), method: :delete %>
 <br>
 <%= link_to "Return to All Patients", patients_path %>
 |
