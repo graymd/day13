@@ -1,0 +1,22 @@
+<strong> <h1>Clinic Info: </h1></strong>
+<strong>Clinic Name:</strong>
+<%= @clinic.name %>
+<br>
+<strong>Street Address:</strong>
+<%= @clinic.st_address %>
+<br>
+<strong>City:</strong>
+<%= @clinic.city %>
+<br>
+<strong>State:</strong>
+<%= @clinic.state %>
+<br>
+<%= link_to "Edit Clinic", edit_clinic_path(@clinic) %>
+|
+<%= link_to "Delete Clinic", clinic_path(@clinic), method: :delete %>
+<br>
+<%= link_to "Return to Clinics", clinics_path %>
+|
+<%= link_to "Return to Main", root_path %>
+<br>
+<br>

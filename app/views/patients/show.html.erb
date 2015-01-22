@@ -1,0 +1,23 @@
+<strong>Information for:</strong>
+<br>
+<strong>Patient:</strong> <%= @patient.last_name + ", " + @patient.first_name %>
+<br>
+<strong>Patient DOB:</strong>
+<%= @patient.date_of_birth %>
+<br>
+<strong>Patient Illness Description:</strong>
+<%= @patient.description %>
+<br>
+<strong>Patient Gender:</strong>
+<%= @patient.gender %>
+<br>
+<strong>Patient Blood Type:</strong>
+<%= @patient.blood_type %> 
+<br>
+<br>
+
+
+<br>
+<%= link_to "Return to All Patients", patients_path %>
+|
+<%= link_to "Return to Main", root_path %>
