@@ -4,7 +4,8 @@ class ClinicsController < ApplicationController
   end
 
   def show
-    @clinic = Clinic.find params[:id]
+    set_clinic
+    @patients = @clinic.patients
   end
   
   def new
@@ -41,5 +42,10 @@ private
       :state
     )
   end
+
+  def set_clinic
+    @clinic = Clinic.find params[:id]
+  end
+
 
 end

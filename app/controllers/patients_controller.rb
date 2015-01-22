@@ -1,22 +1,19 @@
 class PatientsController < ApplicationController
-  def show
-    @patient = Patient.find params[:id]
-  end
-
-
   def index
     @patients = Patient.all
   end
 
   def new
-    @patient = Patient.new
+    @clinic = Clinic.find params[:clinic_id]
+    @patient = @clinic.patients.new
   end
 
   def create
-    @patient = Patient.create patient_params
-      if @patient.save
+    @clinic = Clinic.find params[:clinic_id]
+    @patient = @clinic.patients.create patient_params
+    if @clinic.patients.create
       flash[:notice] = 'Patient info was successfully saved.'
-      redirect_to patients_path
+      redirect_to clinic_path(@clinic)
     else
       flash[:error] = 'Patient info was NOT successfully saved.'
       render :new
@@ -50,24 +47,6 @@ class PatientsController < ApplicationController
   end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 private
   def patient_params
     params.require(:patient).permit(
@@ -79,5 +58,11 @@ private
         :blood_type
       ) 
   end
+
+  def set_clinic
+    @clinic = Clinic.find(params[:id])
+  end
+
+
 
 end

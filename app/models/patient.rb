@@ -1,4 +1,6 @@
 class Patient < ActiveRecord::Base
+  belongs_to :clinic
+
   BLOOD_TYPE_OPTIONS = [
     ["O-", "O-"],
     ["O+", "O+"],
@@ -21,7 +23,6 @@ class Patient < ActiveRecord::Base
         errors.add(:date_of_birth, 'Error. Patient must be at least 10 years old') if self.date_of_birth > 10.years.ago.to_date  
     end
   end
-
 
 
 
