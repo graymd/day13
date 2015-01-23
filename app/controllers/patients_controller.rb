@@ -47,7 +47,7 @@ class PatientsController < ApplicationController
   def destroy
     @patient = Patient.find params[:id]
     @clinic = Clinic.find params[:clinic_id]
-    if @patient.delete
+    if @patient.destroy
       flash[:notice] = 'Patient info was successfully deleted.'
       redirect_to clinic_path(@clinic)
     else
