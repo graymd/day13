@@ -3,6 +3,12 @@ class PatientsController < ApplicationController
     @patients = Patient.all
   end
 
+  def show
+   @clinic = Clinic.find params[:clinic_id]
+   @patient = Patient.find params[:id]
+  end
+
+
   def new
     @clinic = Clinic.find params[:clinic_id]
     @patient = @clinic.patients.new
@@ -21,14 +27,16 @@ class PatientsController < ApplicationController
   end
 
   def edit
-    @patient = Patient.find params[:id]
+    @clinic = Clinic.find params[:clinic_id]
+    @patient = @clinic.patients.find params[:id]
   end
 
   def update
-    @patient = Patient.find params[:id]
+    @clinic = Clinic.find params[:clinic_id]
+    @patient = @clinic.patients.find params[:id]
     if @patient.update_attributes patient_params
       flash[:notice] = 'Patient info was successfully updated.'
-      redirect_to patients_path
+      redirect_to clinic_path(@clinic)
     else
       flash[:notice] = 'Patient info was NOT successfully updated.'
       render :edit
@@ -38,9 +46,10 @@ class PatientsController < ApplicationController
 
   def destroy
     @patient = Patient.find params[:id]
+    @clinic = Clinic.find params[:clinic_id]
     if @patient.delete
       flash[:notice] = 'Patient info was successfully deleted.'
-      redirect_to patients_path
+      redirect_to clinic_path(@clinic)
     else
       flash[:notice] = 'Patient info was NOT successfully deleted.'
     end
@@ -62,7 +71,4 @@ private
   def set_clinic
     @clinic = Clinic.find(params[:id])
   end
-
-
-
 end
