@@ -1,6 +1,7 @@
 class Clinic < ActiveRecord::Base
 
   has_many :patients, dependent: :destroy
+  has_many :doctors, as: :doctorable
 
   US_STATE_OPTIONS =
     [

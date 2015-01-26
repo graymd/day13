@@ -1,6 +1,6 @@
 <h1>Medications Info</h1>
 
-<%= link_to "Create a New Medications", new_medication_path %>
+<%= link_to "Create a New Medication", new_medication_path %>
 <br>
 <ul>
   <% @medications.each do |medication| %>
@@ -16,11 +16,13 @@
       <br>
       <strong>Generic Options Available:</strong>
       <%= medication.generic_option %>
+
       <br>
    <%= link_to "Edit Medication", edit_medication_path(medication) %>
    |
    <%= link_to "Delete Medication", medication_path(medication), method: :delete %>
    </li>
+   <br>
     <% end %>
 </ul>
 <%= link_to "Return to Main", root_path %>

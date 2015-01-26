@@ -1,6 +1,8 @@
 class Patient < ActiveRecord::Base
   belongs_to :clinic
-  has_many :medications, dependent: :destroy
+  has_many :patient_medications
+  has_many :medications, through: :patient_medications
+  has_many :doctors, as: :doctorable
 
   BLOOD_TYPE_OPTIONS = [
     ["O-", "O-"],

@@ -14,7 +14,7 @@
 <strong>Patient Blood Type:</strong>
 <%= @patient.blood_type %> 
 <br>
-<%= link_to "Edit Patient", edit_clinic_patient_path(@clinic, @patient) %>
+<%= link_to "Edit Patient/Medication", edit_clinic_patient_path(@clinic, @patient) %>
 |
 <%= link_to "Delete Patient", clinic_patient_path(@clinic, @patient), method: :delete %>
 <br>
@@ -24,13 +24,12 @@
 <br>
 <br>
 <strong>Patient Medications:</strong>
-<%= link_to "Add Medication", new_clinic_patient_medication_path(@clinic, @patient) %>
 <br>
 <ul>
-  <% @patient.medications.each do |medication| %>
+  <% @medications.each do |medication| %>
     <li>
       <strong>Medication Name:</strong>
-      <%= link_to medication.name, clinic_patient_medication_path(@clinic, @patient, medication) %>
+      <%= medication.name %>
       <br>
       <strong>Company:</strong>
       <%= medication.company %>
@@ -41,9 +40,6 @@
       <strong>Generic Options Available:</strong>
       <%= medication.generic_option %>
       <br>
-     <%= link_to "Edit Medication", edit_clinic_patient_medication_path(@clinic, @patient, medication) %>
-     |
-    <%= link_to "Delete Medication", clinic_patient_medication_path(@clinic, @patient, medication), method: :delete %>
     <br>
     <br>
     </li>

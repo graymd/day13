@@ -6,16 +6,19 @@ class PatientsController < ApplicationController
   def show
    @clinic = Clinic.find params[:clinic_id]
    @patient = Patient.find params[:id]
+   @medications = @patient.medications
   end
 
 
   def new
     @clinic = Clinic.find params[:clinic_id]
     @patient = @clinic.patients.new
+    @medications = Medication.all
   end
 
   def create
     @clinic = Clinic.find params[:clinic_id]
+    @medications = Medication.all
     @patient = @clinic.patients.create patient_params
     if @clinic.patients.create
       flash[:notice] = 'Patient info was successfully saved.'
@@ -28,6 +31,7 @@ class PatientsController < ApplicationController
 
   def edit
     @clinic = Clinic.find params[:clinic_id]
+    @medications = Medication.all
     @patient = @clinic.patients.find params[:id]
   end
 
@@ -64,7 +68,8 @@ private
         :date_of_birth,
         :description,
         :gender,
-        :blood_type
+        :blood_type,
+        medication_ids: []
       ) 
   end
 

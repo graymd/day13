@@ -6,6 +6,7 @@ class ClinicsController < ApplicationController
   def show
     set_clinic
     @patients = @clinic.patients
+    @doctor = Doctor.new
   end
   
   def new
@@ -33,6 +34,12 @@ class ClinicsController < ApplicationController
     redirect_to clinics_path
   end
 
+  def create_doctor
+    @clinic = Clinic.find params[:id]
+    @doctor = @clinic.doctors.create doctor_params
+    redirect_to clinic_path(@clinic)
+  end
+
 private
   def my_params
     params.require(:clinic).permit(
@@ -47,5 +54,24 @@ private
     @clinic = Clinic.find params[:id]
   end
 
+  def doctor_params
+    params.require(:doctor).permit(
+      :doctor_name
+      )
+  end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

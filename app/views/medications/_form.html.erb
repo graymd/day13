@@ -1,4 +1,4 @@
-<%= form_for [@clinic, @patient, @medication] do |f| %>
+<%= form_for [@medication] do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <br>
@@ -14,9 +14,17 @@
   <%= f.radio_button(:generic_option, 0) %>
   <%= f.label(:generic_option, "no") %>
   <br>
+
+  <br>
+  <% @patients.each do |patient| %>
+    <%= check_box_tag 'medication[patient_ids][]', patient.id, @medication.patients.include?(patient) %>
+    <%= patient.last_name %>
+    <br>
+ <% end %>
+  <br>
   <%= f.submit %>
 <% end %>
 <br>
-<%= link_to "Cancel", clinic_patient_path(@clinic, @patient) %>
+<%= link_to "Cancel", medications_path %>
 |
 <%= link_to "Return to Main", root_path %>

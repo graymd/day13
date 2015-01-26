@@ -47,17 +47,23 @@
     </li>
     <br>
   <% end %>
-
-
-
-
-
-
-
-
-
-
-
+</p>
+<strong>Clinic Doctors:</strong>
+<br>
+<ul>
+  <% @clinic.doctors.each do |doctor| %>
+    <li>
+      <%= doctor.doctor_name %>
+      <br>
+    </li>
+  <% end %>
+</ul>
+<%= form_for @doctor, url: create_doctor_clinic_path(@clinic) do |f| %>
+  <%= f.label :doctor_name %>
+  <%= f.text_area :doctor_name %>
+  <br>
+  <%= f.submit %>
+<% end %>
 
 
 
